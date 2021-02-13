@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-import HelloWorld from './components/HelloWorld'
+import App from './containers/App'
 
 const container = document.getElementById('app')
 
-ReactDom.render(<HelloWorld />, container)
+ReactDom.render(<App />, container)
