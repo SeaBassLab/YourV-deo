@@ -173,7 +173,7 @@ const initialState= {
 const store = createStore(reducer, initialState)
 
 ReactDom.render(
-    <Provider sotre={store}>
+    <Provider store={store}>
         <App />   
     </Provider>, 
     document.getElementById('app')
