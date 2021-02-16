@@ -6,6 +6,7 @@ import '../assets/styles/components/CarouselItem.scss'
 import playIcon from '../assets/statics/play-icon.png'
 import plusIcon from '../assets/statics/plus-icon.png'
 import removeIcon from '../assets/statics/remove-icon.png'
+import { Link } from 'react-router-dom'
 
 const CarouselItem = (props) => {
     
@@ -23,13 +24,20 @@ const CarouselItem = (props) => {
     <img className="carousel-item__img" src={cover} alt={title} />
     <div className="carousel-item__details">
         <div>
-            <img className="carousel-item__details--img" src={playIcon} alt="Play" />
+            <Link to={`/player/${id}`} >
+                <img 
+                    className="carousel-item__details--img" 
+                    src={playIcon} 
+                    alt="Play" 
+                />
+            </Link>
+            
             
             {isList ? 
                 <img 
                  className="carousel-item__details--img" 
                  src={removeIcon} 
-                 alt="Plus" 
+                 alt="Remove" 
                  onClick={() => handleDeleteFavorite(id)}
                 /> :
               <img 

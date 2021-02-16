@@ -11,6 +11,38 @@ const reducer = (state, action) => {
                 ...state,
                 myList: state.myList.filter(items => items.id !== action.payload)
             }
+        case 'LOGIN_REQUEST':
+            return {
+                ...state,
+                user: action.payload,
+            }
+        case 'LOGOUT_REQUEST':
+            return {
+                ...state,
+                user: action.payload,
+            }
+        case 'REGISTER_REQUEST':
+            return {
+                ...state,
+                user: action.payload
+            }
+        case 'GET_VIDEO_SOURCE':
+            return {
+                ...state,
+                playing: state.trends.find(item => item.id === Number(action.payload)) 
+                    || state.originals.find(item => item.id === Number(action.payload))
+                    || []
+            }
+        case 'SEARCH_REQUEST':
+            return {
+                ...state,
+                search: [...state.search, action.payload]
+            }
+        case 'CLEAN_SEARCH':
+            return {
+                ...state,
+                search:[]
+            }
         default:
             return state
     }
