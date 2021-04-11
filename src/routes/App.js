@@ -6,8 +6,6 @@ import Register from '../containers/Register'
 import Player from '../containers/Player'
 import NotFound from '../containers/NotFound'
 import Layout from '../components/Layout'
-import PayForm from '../containers/PayForm'
-import 'materialize-css/dist/css/materialize.min.css'
 
 
 const App = () => (
@@ -18,7 +16,6 @@ const App = () => (
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/player/:id" component={Player} />
-                <Route exact path="/payform" component={PayForm} />
                 <Route component={NotFound} />
             </Switch>
         </Layout>
