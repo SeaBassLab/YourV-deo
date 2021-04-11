@@ -31,8 +31,7 @@ const Header = props => {
             <div className="header__menu--profile">
                 {hasUser ? 
                     <img src={gravatar(user.email)} alt={user.email} />:
-                    <img src={userIcon} alt="image icon"
-                />
+                    <img src={userIcon} alt="image icon"/>
                 }               
                 <p>Perfil</p>
             </div>

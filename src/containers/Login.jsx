@@ -8,7 +8,7 @@ import twitterIcon from '../assets/statics/twitter-icon.png'
 import Header from '../components/Header'
 
 const Login = props => {
-  const [form, setValues] = useState()
+  const [ form, setValues] = useState()
 
   const handleInput = event => {
     setValues({
