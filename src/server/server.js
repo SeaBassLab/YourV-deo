@@ -1,6 +1,16 @@
+
 import express from 'express';
 import dotenv from 'dotenv';
 import webpack from 'webpack';
+import React from 'react';
+import { renderToString } from 'react-dom/server';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import { renderRoutes } from 'react-router-config'
+import { StaticRouter } from 'react-router-dom';
+import reducer from '../frontend/reducers';
+import routes from '../frontend/routes/serverRoutes';
+import initialState from '../frontend/initialState';
 
 dotenv.config();
 
@@ -19,8 +29,8 @@ if(ENV === 'dev') {
     app.use(webpackHotMiddleware(compiler));
 }
 
-app.get('*',(req, res) => {
-    res.send(`
+const setResponse = (html) => {
+    return (`
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -31,12 +41,27 @@ app.get('*',(req, res) => {
         <title>YourVideo</title>
     </head>
     <body>
-        <div id="app"></div>
+        <div id="app">${html}</div>
         <script src="assets/app.js" type="text/javascript"></script>
     </body>
     </html>
     `);
-});
+};
+
+const renderApp = (req, res) => {
+    const store = createStore(reducer, initialState);
+    const html = renderToString(
+        <Provider store={store}>
+            <StaticRouter location={req.url} context={{}}>
+                {renderRoutes(routes)}
+            </StaticRouter>
+        </Provider>,
+    );
+
+    res.send(setResponse(html));
+};
+
+app.get('*', renderApp);
 
 app.listen(PORT, (err) => {
     if(err) console.log(err);
