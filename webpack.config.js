@@ -35,7 +35,7 @@ module.exports={
                 vendors: {
                     name: 'vendors',
                     chunks: 'all',
-                    reuseExistingchunk: true,
+                    reuseExistingChunk: true,
                     priority: 1,
                     filename: isDev ? 'assets/vendor.js' : 'assets/vendor-[hash].js',
                     enforce: true,
