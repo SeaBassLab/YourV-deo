@@ -27,6 +27,8 @@
     ],
     "rules": {
       "react/jsx-filename-extension": 0,
+      "react/jsx-props-no-spreading": ["off"],
+      "array-callback-return": ["off"],
       "array-bracket-spacing": 2,
       "arrow-body-style": 0,
       "block-scoped-var": 2,

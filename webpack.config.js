@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 require('dotenv').config();
 
@@ -84,15 +85,17 @@ module.exports={
     plugins:[
         isDev ? new webpack.HotModuleReplacementPlugin()
         : () => { },
-        isDev ? () => {} :
+        isDev ? () => { } :
         new CompressionWebpackPlugin({
             test: /\.js$|\.css$/,
             filename: '[path][base].gz',
         }),
-        isDev ? () =>{ } :
+        isDev ? () => { } :
             new WebpackManifestPlugin(),
         new MiniCssExtractPlugin({
             filename: isDev ? 'assets/app.css' : 'assets/app-[hash].css',
         }),
+        isDev ? () => { } :
+            new ESLintPlugin(),
     ],
 };
